@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шахматная доска */
+        #container {
+            width: 240px;
+            height: 240px;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+        #container > label {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            display: block;
+        }
+        #container > input[type = "radio"] {
+            visibility: hidden;
+            position: absolute;
+            top: -100px;
+            left: -100px;
+        }
+        /* 1 строка */
+        #container > label:nth-of-type(-n+8):nth-of-type(odd) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(-n+8):nth-of-type(even) {
+            background-color: #745853;
+        }
+        /* 2 строка */
+        #container > label:nth-of-type(n+9):nth-of-type(even) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+9):nth-of-type(odd) {
+            background-color: #745853;
+        }
+        /* 3 строка */
+        #container > label:nth-of-type(n+17):nth-of-type(odd) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+17):nth-of-type(even) {
+            background-color: #745853;
+        }
+        /* 4 строка */
+        #container > label:nth-of-type(n+25):nth-of-type(even) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+25):nth-of-type(odd) {
+            background-color: #745853;
+        }
+        /* 5 строка */
+        #container > label:nth-of-type(n+33):nth-of-type(odd) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+33):nth-of-type(even) {
+            background-color: #745853;
+        }
+        /* 6 строка */
+        #container > label:nth-of-type(n+41):nth-of-type(even) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+41):nth-of-type(odd) {
+            background-color: #745853;
+        }
+        /* 7 строка */
+        #container > label:nth-of-type(n+49):nth-of-type(odd) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+49):nth-of-type(even) {
+            background-color: #745853;
+        }
+        /* 8 строка */
+        #container > label:nth-of-type(n+57):nth-of-type(even) {
+            background-color: #f4cd8d;
+        }
+        #container > label:nth-of-type(n+57):nth-of-type(odd) {
+            background-color: #745853;
+        }
+
+        /* Выделение активной клетки */
+        input[name = 'chess']:checked + label {
+            background-color: #f00 !important;
+            position: relative;
+        }
+
+        /* Выделение клеток для ходов */
+        input[name = 'chess']:checked + label::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 150px;
+            height: 90px;
+            bottom: -30px;
+            left: -60px;
+            pointer-events: none;
+
+            background: linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%),
+                linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%),
+                linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%);
+            background-size: 150px 30px;
+            background-position: top left, 0 30px, 0 60px;
+            background-repeat: no-repeat;
+            
+        }
+        input[name = 'chess']:checked + label::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 150px;
+            height: 90px;
+            bottom: -30px;
+            left: -60px;
+            pointer-events: none;
+            background-color: #00f;
+
+            background: linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%),
+                linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%),
+                linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%);
+            background-size: 150px 30px;
+            background-position: top left, 0 30px, 0 60px;
+            background-repeat: no-repeat;
+
+            transform: rotate(90deg);
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        
+        <!-- 1 строка -->
+        <input id="square1" type="radio" name="chess">
+        <label for="square1"></label>
+        
+        <input id="square2" type="radio" name="chess">
+        <label for="square2"></label>
+        
+        <input id="square3" type="radio" name="chess">
+        <label for="square3"></label>
+        
+        <input id="square4" type="radio" name="chess">
+        <label for="square4"></label>
+        
+        <input id="square5" type="radio" name="chess">
+        <label for="square5"></label>
+        
+        <input id="square6" type="radio" name="chess">
+        <label for="square6"></label>
+        
+        <input id="square7" type="radio" name="chess">
+        <label for="square7"></label>
+        
+        <input id="square8" type="radio" name="chess">
+        <label for="square8"></label>
+        
+        <!-- 2 строка -->
+
+        <input id="square9" type="radio" name="chess">
+        <label for="square9"></label>
+        <div></div>
+        
+        <input id="square10" type="radio" name="chess">
+        <label for="square10"></label>
+        <div></div>
+        
+        <input id="square11" type="radio" name="chess">
+        <label for="square11"></label>
+        <div></div>
+        
+        <input id="square12" type="radio" name="chess">
+        <label for="square12"></label>
+        <div></div>
+        
+        <input id="square13" type="radio" name="chess">
+        <label for="square13"></label>
+        <div></div>
+        
+        <input id="square14" type="radio" name="chess">
+        <label for="square14"></label>
+        <div></div>
+        
+        <input id="square15" type="radio" name="chess">
+        <label for="square15"></label>
+        <div></div>
+        
+        <input id="square16" type="radio" name="chess">
+        <label for="square16"></label>
+        <div></div>
+        
+        <!-- 3 строка -->
+        
+        <input id="square17" type="radio" name="chess">
+        <label for="square17"></label>
+        <div></div>
+        
+        <input id="square18" type="radio" name="chess">
+        <label for="square18"></label>
+        <div></div>
+        
+        <input id="square19" type="radio" name="chess">
+        <label for="square19"></label>
+        <div></div>
+        
+        <input id="square20" type="radio" name="chess">
+        <label for="square20"></label>
+        <div></div>
+        
+        <input id="square21" type="radio" name="chess">
+        <label for="square21"></label>
+        <div></div>
+        
+        <input id="square22" type="radio" name="chess">
+        <label for="square22"></label>
+        <div></div>
+        
+        <input id="square23" type="radio" name="chess">
+        <label for="square23"></label>
+        <div></div>
+        
+        <input id="square24" type="radio" name="chess">
+        <label for="square24"></label>
+        <div></div>
+        
+        <!-- 4 строка -->
+        
+        <input id="square25" type="radio" name="chess">
+        <label for="square25"></label>
+        <div></div>
+        
+        <input id="square26" type="radio" name="chess">
+        <label for="square26"></label>
+        <div></div>
+        
+        <input id="square27" type="radio" name="chess">
+        <label for="square27"></label>
+        <div></div>
+        
+        <input id="square28" type="radio" name="chess">
+        <label for="square28"></label>
+        <div></div>
+        
+        <input id="square29" type="radio" name="chess">
+        <label for="square29"></label>
+        <div></div>
+        
+        <input id="square30" type="radio" name="chess">
+        <label for="square30"></label>
+        <div></div>
+        
+        <input id="square31" type="radio" name="chess">
+        <label for="square31"></label>
+        <div></div>
+        
+        <input id="square32" type="radio" name="chess">
+        <label for="square32"></label>
+        <div></div>
+        
+        <!-- 5 строка -->
+        
+        <input id="square33" type="radio" name="chess">
+        <label for="square33"></label>
+        <div></div>
+        
+        <input id="square34" type="radio" name="chess">
+        <label for="square34"></label>
+        <div></div>
+        
+        <input id="square35" type="radio" name="chess">
+        <label for="square35"></label>
+        <div></div>
+        
+        <input id="square36" type="radio" name="chess">
+        <label for="square36"></label>
+        <div></div>
+        
+        <input id="square37" type="radio" name="chess">
+        <label for="square37"></label>
+        <div></div>
+        
+        <input id="square38" type="radio" name="chess">
+        <label for="square38"></label>
+        <div></div>
+        
+        <input id="square39" type="radio" name="chess">
+        <label for="square39"></label>
+        <div></div>
+        
+        <input id="square40" type="radio" name="chess">
+        <label for="square40"></label>
+        <div></div>
+        
+        <!-- 6 строка -->
+        
+        <input id="square41" type="radio" name="chess">
+        <label for="square41"></label>
+        <div></div>
+        
+        <input id="square42" type="radio" name="chess">
+        <label for="square42"></label>
+        <div></div>
+        
+        <input id="square43" type="radio" name="chess">
+        <label for="square43"></label>
+        <div></div>
+        
+        <input id="square44" type="radio" name="chess">
+        <label for="square44"></label>
+        <div></div>
+        
+        <input id="square45" type="radio" name="chess">
+        <label for="square45"></label>
+        <div></div>
+        
+        <input id="square46" type="radio" name="chess">
+        <label for="square46"></label>
+        <div></div>
+        
+        <input id="square47" type="radio" name="chess">
+        <label for="square47"></label>
+        <div></div>
+        
+        <input id="square48" type="radio" name="chess">
+        <label for="square48"></label>
+        <div></div>
+        
+        <!-- 7 строка -->
+        
+        <input id="square49" type="radio" name="chess">
+        <label for="square49"></label>
+        <div></div>
+        
+        <input id="square50" type="radio" name="chess">
+        <label for="square50"></label>
+        <div></div>
+        
+        <input id="square51" type="radio" name="chess">
+        <label for="square51"></label>
+        <div></div>
+        
+        <input id="square52" type="radio" name="chess">
+        <label for="square52"></label>
+        <div></div>
+        
+        <input id="square53" type="radio" name="chess">
+        <label for="square53"></label>
+        <div></div>
+        
+        <input id="square54" type="radio" name="chess">
+        <label for="square54"></label>
+        <div></div>
+        
+        <input id="square55" type="radio" name="chess">
+        <label for="square55"></label>
+        <div></div>
+        
+        <input id="square56" type="radio" name="chess">
+        <label for="square56"></label>
+        <div></div>
+
+        <!-- 8 строка -->
+
+        <input id="square57" type="radio" name="chess">
+        <label for="square57"></label>
+        <div></div>
+        
+        <input id="square58" type="radio" name="chess">
+        <label for="square58"></label>
+        <div></div>
+        
+        <input id="square59" type="radio" name="chess">
+        <label for="square59"></label>
+        <div></div>
+        
+        <input id="square60" type="radio" name="chess">
+        <label for="square60"></label>
+        <div></div>
+        
+        <input id="square61" type="radio" name="chess">
+        <label for="square61"></label>
+        <div></div>
+        
+        <input id="square62" type="radio" name="chess">
+        <label for="square62"></label>
+        <div></div>
+        
+        <input id="square63" type="radio" name="chess">
+        <label for="square63"></label>
+        <div></div>
+        
+        <input id="square64" type="radio" name="chess">
+        <label for="square64"></label>
+        <div></div>
+    </div>
+
+</body>
+</html>

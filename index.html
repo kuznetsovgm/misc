@@ -5,12 +5,503 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            border-spacing: 0;
+        }
+
+        /* Шахматная доска */
+        #container {
+            overflow: hidden;
+            display: inline-block;
+        }
+        #container td {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+        }
+        #container tr:nth-child(odd) > td:nth-child(odd),
+        #container tr:nth-child(even) > td:nth-child(even) {
+            background-color: #f4cd8d;
+        }
+        #container tr:nth-child(odd) > td:nth-child(even),
+        #container tr:nth-child(even) > td:nth-child(odd) {
+            background-color: #745853;
+        }
+        #container label {
+            position: relative;
+        }
+        #container label > input[type = 'radio'] {
+            visibility: hidden;
+            position: absolute;
+        }
+        #container label > div {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        #container td > label {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        /* Выделение активной клетки */
+        #container input[type = 'radio']:checked + div {
+            background-color: #f00;
+        }
+
+        /* Подсветка клеток для хода */
+        input[name = 'chess']:checked + div::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 150px;
+            height: 90px;
+            bottom: -30px;
+            left: -60px;
+            pointer-events: none;
+
+            background: linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%),
+                linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%),
+                linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%);
+            background-size: 150px 30px;
+            background-position: top left, 0 30px, 0 60px;
+            background-repeat: no-repeat;
+            
+        }
+        input[name = 'chess']:checked + div::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 150px;
+            height: 90px;
+            bottom: -30px;
+            left: -60px;
+            pointer-events: none;
+            background-color: #00f;
+
+            background: linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%),
+                linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%),
+                linear-gradient(to right, #00f 20%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #00f 80%);
+            background-size: 150px 30px;
+            background-position: top left, 0 30px, 0 60px;
+            background-repeat: no-repeat;
+
+            transform: rotate(90deg);
+        }
+    </style>
 </head>
 <body>
-    <div id="container" style="width: 750px; height: 150px; font-size: 2px; border: 1px solid black;">
-        Топ-10 jQuery-плагинов недели
+    <div id="container">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                    <td>
+                        <label>
+                            <input type="radio" name="chess">
+                            <div></div>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-
-    <script src="./calcFontSize.js"></script>
 </body>
 </html>
