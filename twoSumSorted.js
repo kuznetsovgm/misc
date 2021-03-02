@@ -37,54 +37,36 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-    let i = 0;
-    const find = (l, r) => {
-        const j = Math.floor((l + r) / 2);
-        const res = nums[i] + nums[j];
-        if (res === target) return j;
-        else if (l === r) return null;
-        else if (l - r === 1) {
-            return find(r, r);
-        }
-        else if (res < target) return find(j + 1, r);
-        else return find(l, j - 1);
-    }
-    // if (nums.length === 2) return [1, 2];
-    for(i; i < nums.length - 1; i++) {
-        if (nums[i] + nums[nums.length - 1] < target) continue;
-        let j = find(i + 1, nums.length - 1);
-        if (j !== null) return [i + 1, j + 1];
-    };
-    return null;
-};
-
-/**
- * не мое решение
- */
-// var twoSum = function(numbers, target) {
-//     const map = new Map()
-//     let i = 0
-//     while(true) {
-//         const number = numbers[i]
-//         if(map.has(target - number)) return [map.get(target - number) + 1, i + 1]
-//         map.set(number, i)
-//         i++
-//     }
-// };
-
-/**
- * не мое решение
- */
-// var twoSum = function(numbers, target) {
-//     const comp = {};
-//     for(let i = 0; i < numbers.length; ++i){
-//         if(comp[numbers[i]]>=0){
-//             return [comp[numbers[i]],i+1];
+// var twoSum = function(nums, target) {
+//     let i = 0;
+//     const find = (l, r) => {
+//         const j = Math.floor((l + r) / 2);
+//         const res = nums[i] + nums[j];
+//         if (res === target) return j;
+//         else if (l === r) return null;
+//         else if (l - r === 1) {
+//             return find(r, r);
 //         }
-//         comp[target - numbers[i]]=i+1;
+//         else if (res < target) return find(j + 1, r);
+//         else return find(l, j - 1);
 //     }
+//     // if (nums.length === 2) return [1, 2];
+//     for(i; i < nums.length - 1; i++) {
+//         if (nums[i] + nums[nums.length - 1] < target) continue;
+//         let j = find(i + 1, nums.length - 1);
+//         if (j !== null) return [i + 1, j + 1];
+//     };
+//     return null;
 // };
+
+var twoSum = function(nums, target) {
+    const map = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        const diff = target - nums[i];
+        if (map.has(diff)) return [map.get(diff) + 1, i + 1];
+        else map.set(nums[i], i);
+    }
+};
 
 console.log(twoSum([-1, 0], -1)); // [1, 2]
 console.log(twoSum([2,7,11,15], 9)); // [1, 2]
